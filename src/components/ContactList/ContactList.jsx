@@ -1,6 +1,7 @@
 /** @format */
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDebounce } from 'react-use';
 import { useSelector, useDispatch } from 'react-redux';
 import Contact from '../Contact';
 import { ContactContainer, ContactsBox } from './ContactList.styled';
@@ -11,12 +12,22 @@ function ContactList() {
 	const dispatch = useDispatch();
 	const filterValue = useSelector(filterState);
 	const contacts = useSelector(contactsState);
+	const [filteredContacts, setFilteredContacts] = useState([]);
 
-	const filteredContacts = contacts
-		? contacts.filter(contact =>
-				contact.name.toLowerCase().includes(filterValue?.toLowerCase())
-		  )
-		: [];
+	useDebounce(
+		() => {
+			const filtered = contacts
+				? contacts
+						.filter(contact =>
+							contact.name.toLowerCase().includes(filterValue?.toLowerCase())
+						)
+						.reverse()
+				: [];
+			setFilteredContacts(filtered);
+		},
+		250,
+		[contacts, filterValue]
+	);
 
 	useEffect(() => {
 		dispatch(fetchAllContacts());
@@ -24,7 +35,7 @@ function ContactList() {
 
 	return (
 		<ContactsBox>
-			{filteredContacts?.reverse().map(({ id, name, number }) => (
+			{filteredContacts?.map(({ id, name, number }) => (
 				<ContactContainer key={id}>
 					<Contact id={id} name={name} number={number} />
 				</ContactContainer>

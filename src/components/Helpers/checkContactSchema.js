@@ -8,6 +8,6 @@ export const schema = yup.object({
 		.string()
 		.matches(/^[\d-]+$/, 'Invalid phone number')
 		.min(6, 'Number must be at least 6 digits')
-		.max(13, 'Number must not exceed 13 digits')
+		.max(15, 'Number must not exceed 15 digits')
 		.required('Number is required'),
 });

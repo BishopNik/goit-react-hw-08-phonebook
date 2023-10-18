@@ -22,10 +22,12 @@ function App() {
 	return (
 		<Container>
 			<FormBox>
-				<TitleName>Phonebook</TitleName>
+				<div>
+					<TitleName>Phonebook</TitleName>
+					<TitleName>Login</TitleName>
+				</div>
 
 				<ContactForm />
-
 				<TitleName>Contacts</TitleName>
 			</FormBox>
 

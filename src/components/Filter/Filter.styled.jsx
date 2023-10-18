@@ -10,6 +10,11 @@ export const FilterField = styled.label`
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 26px;
+	width: 375px;
+
+	@media screen and (min-width: 768px) {
+		width: 700px;
+	}
 `;
 
 export const InputFilter = styled.input`

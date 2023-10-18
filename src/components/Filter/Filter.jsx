@@ -8,6 +8,7 @@ import { changeFilter } from 'redux/filterSlice';
 function Filter() {
 	const dispatch = useDispatch();
 	const filterValue = useSelector(filterState);
+
 	return (
 		<FilterField>
 			Find contacts by name
