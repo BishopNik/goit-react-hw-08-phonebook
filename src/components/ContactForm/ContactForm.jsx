@@ -3,8 +3,8 @@
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import { contactsState, statusLoadingState } from 'redux/selectors';
-import { fetchPostContact } from 'redux/fetchApi';
+import { contactsState, statusLoadingState } from 'redux/contacts/selectors';
+import { fetchPostContact } from 'redux/contacts/fetchApi';
 import { toastWindow, animationButton, checkContact, schema } from '../Helpers';
 import {
 	Label,

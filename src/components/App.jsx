@@ -1,40 +1,51 @@
 /** @format */
 
 import { Toaster } from 'react-hot-toast';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { statusError } from 'redux/selectors';
-import { resetError } from 'redux/contactsSlice';
-import Filter from './Filter';
-import ContactList from './ContactList';
-import ContactForm from './ContactForm';
-import { Container, TitleName, FormBox } from './App.styled';
-import { toastWindow } from './Helpers';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/operations';
+import { Routes, Route } from 'react-router-dom';
+import { useAuth } from 'hooks';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import SharedLayout from './SharedLayout';
+import Loader from 'components/Loader';
+
+const Phonebook = lazy(() => import('pages/Phonebook'));
+const Login = lazy(() => import('pages/Login'));
+const Register = lazy(() => import('pages/Register'));
 
 function App() {
-	const error = useSelector(statusError);
 	const dispatch = useDispatch();
+	const { isRefreshing } = useAuth();
+
 	useEffect(() => {
-		if (error !== null) toastWindow(`Error loading contacts: ${error}`);
-		dispatch(resetError());
-	}, [dispatch, error]);
+		dispatch(refreshUser());
+	}, [dispatch]);
 
-	return (
-		<Container>
-			<FormBox>
-				<div>
-					<TitleName>Phonebook</TitleName>
-					<TitleName>Login</TitleName>
-				</div>
-
-				<ContactForm />
-				<TitleName>Contacts</TitleName>
-			</FormBox>
-
-			<Filter />
-
-			<ContactList />
-
+	return isRefreshing ? (
+		<Loader />
+	) : (
+		<>
+			<Routes>
+				<Route path='/' element={<SharedLayout />}>
+					<Route
+						path='/phonebook'
+						element={<PrivateRoute redirectTo='/login' component={<Phonebook />} />}
+					/>
+					<Route index element={<Login />} />
+					<Route
+						path='/register'
+						element={
+							<RestrictedRoute redirectTo='/phonebook' component={<Register />} />
+						}
+					/>
+					<Route
+						path='/login'
+						element={<RestrictedRoute redirectTo='/phonebook' component={<Login />} />}
+					/>
+				</Route>
+			</Routes>
 			<Toaster
 				position='top-right'
 				reverseOrder={false}
@@ -47,7 +58,7 @@ function App() {
 					},
 				}}
 			/>
-		</Container>
+		</>
 	);
 }
 

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, useFormik } from 'formik';
-import { statusLoadingState, contactsState, statusError } from 'redux/selectors';
+import { statusLoadingState, contactsState, statusError } from 'redux/contacts/selectors';
 import {
 	FormBox,
 	ContactInput,
@@ -13,7 +13,7 @@ import {
 	Label,
 	LabelName,
 } from './Contact.styled';
-import { fetchDelContact, fetchPutContact } from 'redux/fetchApi';
+import { fetchDelContact, fetchPutContact } from 'redux/contacts/fetchApi';
 import { animationButton, checkContact, toastWindow, schema } from '../Helpers';
 
 function Contact(contact) {

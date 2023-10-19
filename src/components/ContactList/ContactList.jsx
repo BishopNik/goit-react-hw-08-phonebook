@@ -5,8 +5,9 @@ import { useDebounce } from 'react-use';
 import { useSelector, useDispatch } from 'react-redux';
 import Contact from '../Contact';
 import { ContactContainer, ContactsBox } from './ContactList.styled';
-import { filterState, contactsState } from 'redux/selectors';
-import { fetchAllContacts } from 'redux/fetchApi';
+import { contactsState } from 'redux/contacts/selectors';
+import { filterState } from 'redux/filter/selectors';
+import { fetchAllContacts } from 'redux/contacts/fetchApi';
 
 function ContactList() {
 	const dispatch = useDispatch();

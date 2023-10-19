@@ -39,3 +39,13 @@ export const FormBox = styled.div`
 		width: 730px;
 	}
 `;
+
+export const MenuLog = styled.div`
+	width: 340px;
+	margin-left: auto;
+	margin-right: auto;
+
+	@media screen and (min-width: 768px) {
+		width: 730px;
+	}
+`;
