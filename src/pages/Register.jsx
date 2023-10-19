@@ -1,11 +1,22 @@
 /** @format */
 
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { register } from 'redux/auth/operations';
 
 const RegisterForm = ({ handleSubmit, pristine, reset, submitting }) => {
+	const dispatch = useDispatch();
 	const submitForm = values => {
-		console.log('run', values);
+		dispatch(
+			register({
+				name: values.name,
+				email: values.email,
+				password: values.password,
+			})
+		);
+
+		reset();
 	};
 
 	return (

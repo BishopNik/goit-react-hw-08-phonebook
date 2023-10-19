@@ -1,7 +1,9 @@
 /** @format */
 
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { logIn } from 'redux/auth/operations';
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const maxLength = max => value =>
@@ -26,8 +28,15 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 );
 
 const LoginForm = ({ handleSubmit, pristine, reset, submitting }) => {
+	const dispatch = useDispatch();
 	const submitForm = values => {
-		console.log('run', values);
+		dispatch(
+			logIn({
+				email: values.email,
+				password: values.password,
+			})
+		);
+
 		reset();
 	};
 
