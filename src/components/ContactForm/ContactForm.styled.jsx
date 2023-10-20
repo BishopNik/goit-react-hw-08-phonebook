@@ -27,7 +27,7 @@ export const Label = styled.label`
 	font-weight: 600;
 
 	@media screen and (max-width: 767px) {
-		width: fit-content;
+		width: 100%;
 	}
 
 	@media screen and (min-width: 768px) {

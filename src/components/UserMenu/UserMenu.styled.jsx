@@ -21,10 +21,7 @@ export const NavUserItem = styled.div`
 	gap: 8px;
 	background-color: white;
 	color: darkblue;
-	text-decoration: none;
-	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 	padding: 7px 12px;
-	border-radius: 5px;
 
 	@media screen and (min-width: 768px) {
 		font-size: 24px;
@@ -39,7 +36,6 @@ export const NavMenu = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 50px;
 	margin-bottom: 20px;
 	padding: 6px 10px;
 	border-bottom: 1px solid black;
@@ -80,6 +76,12 @@ export const ButtonLogout = styled.button`
 	cursor: pointer;
 	border: 0.5px solid black;
 	box-shadow: 0px 0px 4px 2px rgba(128, 128, 128, 0.5);
+	transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+	&:hover {
+		background-color: antiquewhite;
+		transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
 
 	@media screen and (min-width: 768px) {
 		font-size: 24px;
