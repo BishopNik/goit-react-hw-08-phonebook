@@ -13,6 +13,7 @@ import {
 	email,
 	renderField,
 } from 'components/Login/loginFieldCheck';
+import { Container } from 'styled/shared.styled';
 
 const LoginForm = ({ handleSubmit, pristine, reset, submitting }) => {
 	const dispatch = useDispatch();
@@ -33,42 +34,46 @@ const LoginForm = ({ handleSubmit, pristine, reset, submitting }) => {
 	};
 
 	return (
-		<form
-			onSubmit={e => {
-				e.preventDefault();
-				handleSubmit(submitForm)(e);
-			}}
-		>
-			<Field
-				name='email'
-				type='email'
-				component={renderField}
-				label='Email'
-				validate={[required, email]}
-			/>
-			<Field
-				name='password'
-				type='password'
-				component={renderField}
-				label='Password'
-				validate={[required, maxLength15, minLength7]}
-			/>
-			<div>
-				<button type='submit' disabled={submitting}>
-					Submit
-				</button>
-				<button
-					type='button'
-					disabled={pristine || cancelLogin.current === null}
-					onClick={() => cancelLogin.current?.abort()}
-				>
-					Cancel login
-				</button>
-				<button type='button' disabled={pristine || submitting} onClick={reset}>
-					Clear Values
-				</button>
-			</div>
-		</form>
+		<Container>
+			<form
+				onSubmit={e => {
+					e.preventDefault();
+					handleSubmit(submitForm)(e);
+				}}
+			>
+				<Field
+					name='email'
+					type='email'
+					component={renderField}
+					label='Login'
+					placeholder='Enter email'
+					validate={[required, email]}
+				/>
+				<Field
+					name='password'
+					type='password'
+					component={renderField}
+					label='Password'
+					placeholder='Enter password'
+					validate={[required, maxLength15, minLength7]}
+				/>
+				<div>
+					<button type='submit' disabled={submitting}>
+						Submit
+					</button>
+					<button
+						type='button'
+						disabled={pristine || cancelLogin.current === null}
+						onClick={() => cancelLogin.current?.abort()}
+					>
+						❌
+					</button>
+					<button type='button' disabled={pristine || submitting} onClick={reset}>
+						🗑️
+					</button>
+				</div>
+			</form>
+		</Container>
 	);
 };
 

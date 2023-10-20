@@ -1,5 +1,6 @@
 /** @format */
 
+import { LabelItem, InputBox, InputItem, ErrorMsg } from './loginFieldCheck.styled';
 export const required = value => (value || typeof value === 'number' ? undefined : 'Required');
 const maxLength = max => value =>
 	value && value.length > max ? `Must be ${max} characters or less` : undefined;
@@ -13,12 +14,20 @@ export const email = value =>
 		? 'Invalid email address'
 		: undefined;
 
-export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderField = ({
+	input,
+	label,
+	placeholder,
+	type,
+	meta: { touched, error, warning },
+}) => (
 	<div>
-		<label>{label}</label>
-		<div>
-			<input {...input} placeholder={label} type={type} />
-			{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-		</div>
+		<LabelItem>{label}</LabelItem>
+		<InputBox>
+			<InputItem {...input} placeholder={placeholder} type={type} />
+			{touched &&
+				((error && <ErrorMsg>🚨 {error}</ErrorMsg>) ||
+					(warning && <ErrorMsg>🚨 {warning}</ErrorMsg>))}
+		</InputBox>
 	</div>
 );
