@@ -15,7 +15,7 @@ export const UserMenu = () => {
 		<>
 			<NavMenu>
 				<NavItem to='/phonebook' end>
-					Phonebook
+					PHONEBOOK
 				</NavItem>
 				<NavUserItem>
 					<UserItem>

@@ -10,6 +10,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'components/Helpers/GlobalStyle';
 import { store, persistor } from './redux/store';
 import 'modern-normalize';
+import { Toaster } from 'react-hot-toast';
 
 const theme = {
 	spacing: x => `${x * 4}px`,
@@ -22,6 +23,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 			<BrowserRouter basename='/goit-react-hw-08-phonebook'>
 				<ThemeProvider theme={theme}>
 					<App />
+					<Toaster
+						position='top-right'
+						reverseOrder={false}
+						gutter={8}
+						toastOptions={{
+							duration: 5000,
+							style: {
+								background: '#fdfbea',
+								color: '#000000',
+							},
+						}}
+					/>
 					<GlobalStyle />
 				</ThemeProvider>
 			</BrowserRouter>

@@ -1,6 +1,5 @@
 /** @format */
 
-import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { statusError } from 'redux/contacts/selectors';
@@ -34,19 +33,6 @@ function Phonebook() {
 			<Filter />
 
 			<ContactList />
-
-			<Toaster
-				position='top-right'
-				reverseOrder={false}
-				gutter={8}
-				toastOptions={{
-					duration: 5000,
-					style: {
-						background: '#fdfbea',
-						color: '#000000',
-					},
-				}}
-			/>
 		</Container>
 	);
 }

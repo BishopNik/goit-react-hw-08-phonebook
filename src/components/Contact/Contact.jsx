@@ -9,10 +9,10 @@ import {
 	ContactInput,
 	ButtonsContainer,
 	InputContainer,
-	Button,
 	Label,
 	LabelName,
 } from './Contact.styled';
+import { Button } from 'styled/shared.styled';
 import { fetchDelContact, fetchPutContact } from 'redux/contacts/fetchApi';
 import { animationButton, checkContact, toastWindow, schema } from '../Helpers';
 
