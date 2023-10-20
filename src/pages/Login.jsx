@@ -1,43 +1,35 @@
 /** @format */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+
 import { logIn } from 'redux/auth/operations';
 
-const required = value => (value || typeof value === 'number' ? undefined : 'Required');
-const maxLength = max => value =>
-	value && value.length > max ? `Must be ${max} characters or less` : undefined;
-const maxLength15 = maxLength(15);
-const minLength = min => value =>
-	value && value.length < min ? `Must be ${min} characters or more` : undefined;
-const minLength2 = minLength(2);
-const email = value =>
-	value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-		? 'Invalid email address'
-		: undefined;
-
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-	<div>
-		<label>{label}</label>
-		<div>
-			<input {...input} placeholder={label} type={type} />
-			{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-		</div>
-	</div>
-);
+import {
+	required,
+	maxLength15,
+	minLength7,
+	email,
+	renderField,
+} from 'components/Login/loginFieldCheck';
 
 const LoginForm = ({ handleSubmit, pristine, reset, submitting }) => {
 	const dispatch = useDispatch();
+	const cancelLogin = useRef(null);
+
 	const submitForm = values => {
-		dispatch(
+		if (!values.email && !values.password) {
+			return;
+		}
+		cancelLogin.current = dispatch(
 			logIn({
 				email: values.email,
 				password: values.password,
 			})
 		);
 
-		reset();
+		// reset();
 	};
 
 	return (
@@ -59,13 +51,17 @@ const LoginForm = ({ handleSubmit, pristine, reset, submitting }) => {
 				type='password'
 				component={renderField}
 				label='Password'
-				validate={[required, maxLength15, minLength2]}
+				validate={[required, maxLength15, minLength7]}
 			/>
 			<div>
 				<button type='submit' disabled={submitting}>
 					Submit
 				</button>
-				<button type='button' disabled={pristine || submitting} onClick={reset}>
+				<button
+					type='button'
+					disabled={pristine || cancelLogin.current === null}
+					onClick={() => cancelLogin.current?.abort()}
+				>
 					Cancel login
 				</button>
 				<button type='button' disabled={pristine || submitting} onClick={reset}>

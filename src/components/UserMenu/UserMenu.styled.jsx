@@ -18,7 +18,7 @@ export const NavUserItem = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 5px;
+	gap: 8px;
 	background-color: white;
 	color: darkblue;
 	text-decoration: none;
@@ -55,7 +55,7 @@ export const NavMenu = styled.nav`
 	}
 `;
 
-export const UserName = styled.p`
+export const UserItem = styled.p`
 	margin: 0;
 	padding: 0;
 	font-size: 16px;
@@ -68,12 +68,22 @@ export const UserName = styled.p`
 	}
 `;
 
+export const UserName = styled.span`
+	color: red;
+`;
+
 export const ButtonLogout = styled.button`
 	font-size: 16px;
 	font-weight: 500;
+	padding: 3px 6px;
+	border-radius: 6px;
+	cursor: pointer;
+	border: 0.5px solid black;
+	box-shadow: 0px 0px 4px 2px rgba(128, 128, 128, 0.5);
 
 	@media screen and (min-width: 768px) {
 		font-size: 24px;
 		font-weight: 600;
+		padding: 5px 10px;
 	}
 `;

@@ -3,7 +3,9 @@
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
-import { NavItem, NavMenu, NavUserItem, UserName, ButtonLogout } from './UserMenu.styled';
+import { animationButton } from '../Helpers';
+
+import { NavItem, NavMenu, NavUserItem, UserItem, UserName, ButtonLogout } from './UserMenu.styled';
 
 export const UserMenu = () => {
 	const dispatch = useDispatch();
@@ -16,8 +18,16 @@ export const UserMenu = () => {
 					Phonebook
 				</NavItem>
 				<NavUserItem>
-					<UserName>Welcome, {user.name}</UserName>
-					<ButtonLogout type='button' onClick={() => dispatch(logOut())}>
+					<UserItem>
+						Welcome, <UserName>{user.name}</UserName>
+					</UserItem>
+					<ButtonLogout
+						type='button'
+						onClick={e => {
+							animationButton(e);
+							dispatch(logOut());
+						}}
+					>
 						Logout
 					</ButtonLogout>
 				</NavUserItem>

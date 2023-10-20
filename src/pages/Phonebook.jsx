@@ -12,9 +12,10 @@ import { TitleName, FormBox } from './App.styled';
 import { Container } from 'styled/shared.styled';
 import { toastWindow } from 'components/Helpers';
 
-function App() {
+function Phonebook() {
 	const error = useSelector(statusError);
 	const dispatch = useDispatch();
+
 	useEffect(() => {
 		if (error !== null) toastWindow(`Error loading contacts: ${error}`);
 		dispatch(resetError());
@@ -50,4 +51,4 @@ function App() {
 	);
 }
 
-export default App;
+export default Phonebook;

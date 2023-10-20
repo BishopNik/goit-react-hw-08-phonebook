@@ -2,7 +2,7 @@
 
 import { Toaster } from 'react-hot-toast';
 import { useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { Routes, Route } from 'react-router-dom';
 import { useAuth } from 'hooks';
@@ -10,6 +10,9 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import SharedLayout from './SharedLayout';
 import Loader from 'components/Loader';
+import { statusUserError } from 'redux/auth/selectors';
+import { resetError } from 'redux/auth/authSlice';
+import { toastWindow } from 'components/Helpers';
 
 const Phonebook = lazy(() => import('pages/Phonebook'));
 const Login = lazy(() => import('pages/Login'));
@@ -18,10 +21,16 @@ const Register = lazy(() => import('pages/Register'));
 function App() {
 	const dispatch = useDispatch();
 	const { isRefreshing } = useAuth();
+	const errorUser = useSelector(statusUserError);
 
 	useEffect(() => {
 		dispatch(refreshUser());
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (errorUser !== null && errorUser !== 'Unable to fetch user') toastWindow(`${errorUser}`);
+		dispatch(resetError());
+	}, [dispatch, errorUser]);
 
 	return isRefreshing ? (
 		<Loader />
