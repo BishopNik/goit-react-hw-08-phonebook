@@ -44,6 +44,20 @@ export const InputFormik = styled(Field)`
 	color: blue;
 `;
 
+export const SelectFormik = styled.select`
+	padding: 10px 40px 10px 25px;
+	border-radius: ${p => p.theme.spacing(1)};
+	border: none;
+	outline: 2px solid lightgray;
+	font-size: 24px;
+	color: blue;
+
+	appearance: none;
+	background: url('https://cdn-icons-png.flaticon.com/512/60/60995.png') no-repeat right center;
+	background-size: 20px 20px;
+	background-position-x: calc(100% - 20px);
+`;
+
 export const AddButton = styled.button`
 	border-radius: 6px;
 	font-size: 22px;

@@ -1,6 +1,6 @@
 /** @format */
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { contactsState, statusLoadingState } from 'redux/contacts/selectors';
@@ -10,6 +10,7 @@ import {
 	Label,
 	FormikContact,
 	InputFormik,
+	SelectFormik,
 	AddButton,
 	CancelButton,
 } from './ContactForm.styled.jsx';
@@ -19,24 +20,33 @@ function ContactForm({ onSubmitForm }) {
 	const contacts = useSelector(contactsState);
 	const statusLoading = useSelector(statusLoadingState);
 	const cancelAddContact = useRef(null);
+	const [selectedGender, setSelectedGender] = useState('');
+
+	const handleGenderChange = ({ target }) => {
+		const newGender = target.value;
+		setSelectedGender(newGender);
+	};
 
 	const handleAddContact = ({ name, number }) => {
-		const status = checkContact(contacts, name);
+		const nameValue = `${name}&${selectedGender}`;
+		const status = checkContact(contacts, nameValue);
 		if (!status) {
-			cancelAddContact.current = dispatch(fetchPostContact({ name, number }));
+			cancelAddContact.current = dispatch(fetchPostContact({ name: nameValue, number }));
 		} else toastWindow(`${name} is already in contacts.`);
 		return status;
 	};
 
-	const handleSubmit = (contact, actions) => {
-		schema
-			.validate(contact)
-			.then(() => {
-				!handleAddContact(contact) && actions.resetForm();
-			})
-			.catch(validationErrors => {
-				toastWindow(`Error: ${validationErrors.errors}`);
-			});
+	const handleSubmit = async (contact, actions) => {
+		try {
+			await schema.validate(contact);
+			const status = handleAddContact(contact);
+			if (!status) {
+				actions.resetForm();
+				setSelectedGender('other');
+			}
+		} catch (validationErrors) {
+			toastWindow(`Error: ${validationErrors.errors}`);
+		}
 	};
 
 	return (
@@ -60,6 +70,16 @@ function ContactForm({ onSubmitForm }) {
 							autoComplete='off'
 							placeholder='Aneta'
 						/>
+					</Label>
+
+					<Label>
+						Gender
+						<SelectFormik value={selectedGender} onChange={handleGenderChange}>
+							<option value='other'>Other</option>
+							<option value='male'>Male</option>
+							<option value='female'>Female</option>
+							<option value='bussines'>Вussines</option>
+						</SelectFormik>
 					</Label>
 
 					<Label>
