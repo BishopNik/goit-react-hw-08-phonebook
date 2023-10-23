@@ -11,6 +11,11 @@ export const NavItem = styled(NavLink)`
 	border-radius: 5px;
 	cursor: default;
 	pointer-events: none;
+	font-size: 18px;
+
+	@media screen and (min-width: 768px) {
+		font-size: 24px;
+	}
 `;
 
 export const NavUserItem = styled.div`
@@ -26,7 +31,6 @@ export const NavUserItem = styled.div`
 	@media screen and (min-width: 768px) {
 		font-size: 24px;
 		font-weight: 600;
-
 		gap: 20px;
 		flex-direction: row;
 	}
