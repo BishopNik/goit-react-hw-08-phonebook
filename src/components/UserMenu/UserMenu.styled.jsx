@@ -40,7 +40,7 @@ export const NavMenu = styled.nav`
 	padding: 6px 10px;
 	border-bottom: 1px solid black;
 	box-shadow: 0px 0px 5px 0px gray;
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 600;
 	color: darkblue;
 
@@ -52,6 +52,7 @@ export const NavMenu = styled.nav`
 `;
 
 export const UserItem = styled.p`
+	text-align: center;
 	margin: 0;
 	padding: 0;
 	font-size: 16px;

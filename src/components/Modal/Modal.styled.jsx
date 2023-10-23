@@ -5,7 +5,7 @@ import { Field, Form } from 'formik';
 
 export const FormBox = styled(Form)`
 	display: flex;
-	width: 375px;
+	width: 355px;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
@@ -32,6 +32,7 @@ export const ButtonsContainer = styled.div`
 
 export const ContactBox = styled.div`
 	display: flex;
+	align-items: center;
 	gap: 10px;
 	margin-bottom: 30px;
 	margin-left: auto;
@@ -45,21 +46,25 @@ export const ContactBox = styled.div`
 export const InputContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
 	cursor: inherit;
 `;
 
 export const ContactInput = styled(Field)`
-	width: 205px;
+	width: 170px;
 	margin: 0;
 	margin-right: auto;
 	padding: ${p => p.theme.spacing(3)} ${p => p.theme.spacing(2)};
-	font-size: 22px;
+	font-size: 18px;
 	color: darkblue;
 	border: none;
 	background-color: transparent;
 	border-radius: 6px;
 	cursor: inherit;
+
+	@media screen and (min-width: 768px) {
+		font-size: 22px;
+		width: 205px;
+	}
 
 	&:focus {
 		outline: 1px solid red;
@@ -71,15 +76,23 @@ export const Label = styled.label`
 	align-items: center;
 	gap: 5px;
 	width: 100%;
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: 600;
 	border-radius: 6px;
 	cursor: inherit;
+
+	@media screen and (min-width: 768px) {
+		font-size: 22px;
+	}
 `;
 
 export const LabelName = styled.span`
-	width: 85px;
+	width: 68px;
 	cursor: inherit;
+
+	@media screen and (min-width: 768px) {
+		width: 85px;
+	}
 `;
 
 export const Avatar = styled.div`
