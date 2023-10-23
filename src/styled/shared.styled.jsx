@@ -7,10 +7,6 @@ export const Container = styled.div`
 	margin-left: auto;
 	margin-right: auto;
 
-	&:last-child {
-		margin-bottom: 40px;
-	}
-
 	@media screen and (max-width: 767px) {
 		width: 400px;
 	}
@@ -33,7 +29,7 @@ export const Button = styled.button`
 	cursor: pointer;
 	box-shadow: 0px 0px 4px 2px rgba(128, 128, 128, 0.5);
 	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-	min-width: 60px;
+	min-width: 50px;
 	height: 34px;
 
 	&:hover {

@@ -36,7 +36,11 @@ export const FormBox = styled.div`
 	margin-right: auto;
 
 	@media screen and (min-width: 768px) {
-		width: 730px;
+		width: 650px;
+	}
+
+	@media screen and (min-width: 1279px) {
+		width: 750px;
 	}
 `;
 

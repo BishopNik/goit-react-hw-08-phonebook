@@ -30,7 +30,7 @@ export const NavItem = styled(NavLink)`
 export const NavMenu = styled.nav`
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	padding: 12px 40px;
 	border-bottom: 1px solid black;
 	box-shadow: 0px 0px 5px 0px gray;

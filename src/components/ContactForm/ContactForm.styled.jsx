@@ -25,14 +25,6 @@ export const Label = styled.label`
 	margin-bottom: ${p => p.theme.spacing(9)};
 	font-size: 24px;
 	font-weight: 600;
-
-	@media screen and (max-width: 767px) {
-		width: 100%;
-	}
-
-	@media screen and (min-width: 768px) {
-		width: 90%;
-	}
 `;
 
 export const InputFormik = styled(Field)`

@@ -11,7 +11,7 @@ export const NavItem = styled(NavLink)`
 	border-radius: 5px;
 	cursor: default;
 	pointer-events: none;
-	font-size: 18px;
+	font-size: 16px;
 
 	@media screen and (min-width: 768px) {
 		font-size: 24px;
@@ -40,7 +40,7 @@ export const NavMenu = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	padding: 6px 10px;
 	border-bottom: 1px solid black;
 	box-shadow: 0px 0px 5px 0px gray;
