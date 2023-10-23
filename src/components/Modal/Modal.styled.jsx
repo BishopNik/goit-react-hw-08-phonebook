@@ -45,6 +45,7 @@ export const ContactBox = styled.div`
 
 export const InputContainer = styled.div`
 	display: flex;
+	gap: 6px;
 	flex-direction: column;
 	cursor: inherit;
 `;

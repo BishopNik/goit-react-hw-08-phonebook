@@ -25,7 +25,7 @@ export const ContactFiels = styled.div`
 
 export const ContactName = styled.span`
 	display: inline-block;
-	width: 105px;
+	width: 115px;
 	color: #000000b5;
 `;
 
